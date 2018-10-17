@@ -7,57 +7,8 @@ pd 07
 ---------------------
 Da Art of Storytellin'
 Project 00
-
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-USAGE:
-* Replace all fields, angle brackets included, with specified info.
-  eg, pd <pd#> --> pd 3
-* Delete these instructions once all teammates understand usage.
-  (from tilde bar above to tilde bar below)
-
-devlog--
-Use keyboard shortcut to jump to end,
- replicate entry template,
- modify appropriately.
-
-zone of reflection--
-Flesh out each category whenever necessary, appropriate.
- Need not be fully filled in until end of project,
- but best done as you go along.
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-/////////// Zone of Reflection \\\\\\\\\\\
-------------------------------------------
-OBSTACLES OVERCOME
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<Wow, we so BOSS bc...>
-
-UNRESOLVED ISSUES
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<
-blah blah pesky bug...
-maybe some of these will move into the Obs.Ovrcm section...
->
-
-COOL STUFF LEARNED
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<wow! oo! etc!...>
-
-MID-DEVELOPMENT DESIGN CHANGES
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-We changed ___ to ___ bc...
-<etc>
-<etc>
-
-LESSONS LEARNED
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<tales of wisdom gained...>
-||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-
+Your team has been contracted to create a collaborative storytelling game/website.
+Make a site that allows users to do this.
 
  ______   ______   __   __   __       ______   _______     
 /_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\    
@@ -89,7 +40,7 @@ sipping virtual hot chocolate :coffee: around a virtual campfire :fire:
 rubinP -- 2018-10-16 20:17
 sipping virtual hot chocolate :coffee: around a virtual campfire :fire:
 
-~~ Chief of Staff's summary of events ~~
+~~ Our summary of events ~~
 - ugh i totally understand Dave I hate it when people steal sweaters off my desk 
 - plan things out carefully, making sure to layout the foundation first (action1). This way, you don’t end up with a bridge that is half suspension bridge and half supporting columns.
     - on that note, know which parts of the code are essential and which are for funnies
@@ -98,3 +49,5 @@ sipping virtual hot chocolate :coffee: around a virtual campfire :fire:
     - if you have a problem with the code and don’t try to resolve it, any code built off it it will turn into a pile of broken snowflakes soaked in cat urine with a Picasso covering it because no one wants to see the mess and no one will want to fix it
     - agree on a set of “standards” with your team before coding, and check up on code often to make sure it complies
 - haha 4chan. also gg to the kid in Russia and rip all of our internet privacy
+
+
