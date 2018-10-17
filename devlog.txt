@@ -81,20 +81,20 @@ maggieZ -- 2018-10-16 20:31
 Work on the design doc, create component maps 
 
 maggieZ -- 2018-10-17 20:17
-sipping virtual hot chocolate around a virtual campfire
+sipping virtual hot chocolate :coffee: around a virtual campfire :fire:
 
 qianZ -- 2018-10-17 20:17
-sipping virtual hot chocolate around a virtual campfire
+sipping virtual hot chocolate :coffee: around a virtual campfire :fire:
 
 rubinP -- 2018-10-17 20:17
-sipping virtual hot chocolate around a virtual campfire
+sipping virtual hot chocolate :coffee: around a virtual campfire :fire:
 
-Chief of Staff's summary of events:
+**Chief of Staff's summary of events:**
 - ugh i totally understand Dave I hate it when people steal sweaters off my desk 
-- plan things out carefully, making sure to layout the foundation first. This way, you don’t end up with a bridge that is half suspension bridge and half supporting columns.
+- plan things out carefully, making sure to layout the foundation first *(action1)*. This way, you don’t end up with a bridge that is half suspension bridge and half supporting columns.
     - on that note, know which parts of the code are essential and which are for funnies
-- make sure program works on all systems. there is no reason why it should be fine on a mac, but break on a linux computer, and restarting a computer will not make it work magically . 
-- enforce and use good coding practices- do not try to rush through the problem, or use bugs/hacks as acceptable code, tell your teammates where there are issues or questionable code
-    - if you have a problem with the code and don’t try to resolve it, any code built off it it will turn into a pile of broken snowflakes soaked in cat urine with a Picasso covering it because no one wants to see that mess
-    - agree on a set of “standards” with your team before coding and check up on code to make sure it complies
+- make sure program works on all systems *(action2)*. there is no reason why it should be fine on a mac, but break on a linux computer; restarting a computer will not make things work magically!
+- enforce and use good coding practices *(action3)*- do not try to rush through the problem, or use bugs/hacks as acceptable code. communicate to your teammates where there are issues, questionable code, or if you're unsure about anything 
+    - if you have a problem with the code and don’t try to resolve it, any code built off it it will turn into a pile of broken snowflakes soaked in cat urine with a Picasso covering it because no one wants to see the mess and no one will want to fix it
+    - agree on a set of “standards” with your team before coding, and check up on code often to make sure it complies
 - haha 4chan. also gg to the kid in Russia and rip all of our internet privacy
