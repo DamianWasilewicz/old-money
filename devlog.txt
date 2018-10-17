@@ -71,22 +71,22 @@ LESSONS LEARNED
 
 
 --------------------------------------------------------------
-rubinP -- 2018-10-16 23:29
+rubinP -- 2018-10-15 23:29
 Work on the design doc
 
-qianZ -- 2018-10-16 23:29
+qianZ -- 2018-10-15 23:29
 Work on the design doc 
 
-maggieZ -- 2018-10-16 20:31
+maggieZ -- 2018-10-15 20:31
 Work on the design doc, create component maps 
 
-maggieZ -- 2018-10-17 20:17
+maggieZ -- 2018-10-16 20:17
 sipping virtual hot chocolate :coffee: around a virtual campfire :fire:
 
-qianZ -- 2018-10-17 20:17
+qianZ -- 2018-10-16 20:17
 sipping virtual hot chocolate :coffee: around a virtual campfire :fire:
 
-rubinP -- 2018-10-17 20:17
+rubinP -- 2018-10-16 20:17
 sipping virtual hot chocolate :coffee: around a virtual campfire :fire:
 
 ~~ Chief of Staff's summary of events ~~
