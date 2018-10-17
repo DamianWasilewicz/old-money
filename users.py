@@ -1,7 +1,7 @@
 from passlib.hash import sha256_crypt
 import sqlite3
 
-LOGIN = "info.db"
+LOGIN = "logins.db"
 
 db = sqlite3.connect(LOGIN)
 c = db.cursor()
