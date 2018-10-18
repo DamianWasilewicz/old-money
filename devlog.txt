@@ -61,3 +61,6 @@ hard coded users to the logins.db
 
 rubinP -- 2018-10-18 12:45 
 fixed a bug in the flask app to check passwords
+
+qianZ -- 2018-10-18 13:17
+worked in class on story update and viewing
