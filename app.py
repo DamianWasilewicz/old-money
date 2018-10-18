@@ -23,9 +23,11 @@ def check():
     cmd = """SELECT * FROM info""" #selecting with WHERE may give errors
     threadC = c.execute(cmd).fetchall()
     
-    for entry in threadC:
+    for entry in threadC: 
         if (entry[0] == usrn):
-            if entry[1]== sha256_crypt.hash(passw):
+            print(entry[1])
+            print(sha256_crypt.hash(passw))
+            if sha256_crypt.verify(passw, entry[1]):
                 return "SUCCESS!!"
             return "NAY PASSWORD"
     return "no such username"
