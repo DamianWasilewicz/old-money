@@ -19,7 +19,7 @@ def check():
     c = db.cursor() #facilitate db ops
     usrn = request.form['username']
     passw= request.form['password']
-    print (usrn, passw)
+    #print (usrn, passw)
     cmd = """SELECT * FROM info""" #selecting with WHERE may give errors
     threadC = c.execute(cmd).fetchall()
     
@@ -28,10 +28,23 @@ def check():
             print(entry[1])
             print(sha256_crypt.hash(passw))
             if sha256_crypt.verify(passw, entry[1]):
+                
                 return "SUCCESS!!"
             return "NAY PASSWORD"
     return "no such username"
 
+@app.route("/display")#displays one story selected in entirety
+def display():
+    DB_FILE = "stories.db"
+    db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
+    c = db.cursor() #facilitate db ops
+    nm = request.args.get("placeholder_for_storyname")
+    cmd = """SELECT contribution FROM """+nm
+    contributions = c.execute(cmd).fetchall()
+    s=nm+"\n"
+    for txt in contributions:
+        s += txt[0]+" "
+    return s
 
 if __name__ == "__main__":
     app.debug = True
