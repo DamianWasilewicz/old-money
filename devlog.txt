@@ -50,4 +50,14 @@ sipping virtual hot chocolate around a virtual campfire
     - agree on a set of “standards” with your team before coding, and check up on code often to make sure it complies
 - haha 4chan. also gg to the kid in Russia and rip all of our internet privacy
 
+maggieZ -- 2018-10-17 12:43
+created templates for login and whatnot
 
+qianZ -- 2018-10-16 20:50
+created flask app to check passwords
+
+rubinP -- 2018-10-17 12:54 
+hard coded users to the logins.db
+
+rubinP -- 2018-10-18 12:45 
+fixed a bug in the flask app to check passwords
