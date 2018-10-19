@@ -14,7 +14,7 @@ def root():
 
 @app.route("/auth", methods = ["POST"])
 def check():
-    DB_FILE="logins.db"
+    DB_FILE="data/logins.db"
     db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
     c = db.cursor() #facilitate db ops
     usrn = request.form['username']
@@ -29,19 +29,19 @@ def check():
             print(sha256_crypt.hash(passw))
             if sha256_crypt.verify(passw, entry[1]):
                 
-                return "SUCCESS!!"
+                return 'SUCCESS!!\n<a href="/display?story=Frankenstein">view stories</a>'
             return "NAY PASSWORD"
     return "no such username"
 
 @app.route("/display")#displays one story selected in entirety
 def display():
-    DB_FILE = "stories.db"
+    DB_FILE = "data/stories.db"
     db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
     c = db.cursor() #facilitate db ops
-    nm = request.args.get("placeholder_for_storyname")
-    cmd = """SELECT contribution FROM """+nm
+    nm = request.args.get("story")
+    cmd = """SELECT contribution FROM """ + nm
     contributions = c.execute(cmd).fetchall()
-    s=nm+"\n"
+    s = nm+"\n"
     for txt in contributions:
         s += txt[0]+" "
     return s
