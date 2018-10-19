@@ -53,7 +53,7 @@ sipping virtual hot chocolate around a virtual campfire
 maggieZ -- 2018-10-17 12:43
 created templates for login and whatnot
 
-qianZ -- 2018-10-16 20:50
+qianZ -- 2018-10-17 20:50
 created flask app to check passwords
 
 rubinP -- 2018-10-17 12:54 
