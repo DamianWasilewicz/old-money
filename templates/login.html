@@ -9,6 +9,12 @@
   </head>
 
   <body>
+    {% set msgs = get_flashed_messages() %}
+    {% for each in msgs %}
+      {{ each }}
+      <br>
+
+    {% endfor %}
     <!--{% block content %}-->
     Welcome to old-money stories!
     <br>
@@ -21,8 +27,8 @@
       <input type = "submit" name = "Log In" >
     </form>
 
-    <form action = "/register" method = "POST">
-      <a class="button" href="/#">create user</a>
+    <form action = "/loadPage" method = "POST">
+      <a class="button" href="/register">create user</a>
 
 
 

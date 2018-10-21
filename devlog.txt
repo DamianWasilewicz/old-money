@@ -3,20 +3,20 @@ Rubin Peci
 Maggie Zhao
 Qian Zhou
 
-pd 07 
+pd 07
 ---------------------
 Da Art of Storytellin'
 Project 00
 Your team has been contracted to create a collaborative storytelling game/website.
 Make a site that allows users to do this.
 
- ______   ______   __   __   __       ______   _______     
-/_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\    
-\:::_ \ \\::::_\/_\:\ \\ \ \\:\ \    \:::_ \ \\::::__\/__  
- \:\ \ \ \\:\/___/\\:\ \\ \ \\:\ \    \:\ \ \ \\:\ /____/\ 
-  \:\ \ \ \\::___\/_\:\_/.:\ \\:\ \____\:\ \ \ \\:\\_  _\/ 
-   \:\/.:| |\:\____/\\ ..::/ / \:\/___/\\:\_\ \ \\:\_\ \ \ 
-    \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/ 
+ ______   ______   __   __   __       ______   _______
+/_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\
+\:::_ \ \\::::_\/_\:\ \\ \ \\:\ \    \:::_ \ \\::::__\/__
+ \:\ \ \ \\:\/___/\\:\ \\ \ \\:\ \    \:\ \ \ \\:\ /____/\
+  \:\ \ \ \\::___\/_\:\_/.:\ \\:\ \____\:\ \ \ \\:\\_  _\/
+   \:\/.:| |\:\____/\\ ..::/ / \:\/___/\\:\_\ \ \\:\_\ \ \
+    \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
@@ -26,26 +26,26 @@ rubinP -- 2018-10-15 23:29
 Work on the design doc
 
 qianZ -- 2018-10-15 23:29
-Work on the design doc 
+Work on the design doc
 
 maggieZ -- 2018-10-15 20:31
-Work on the design doc, create component maps 
+Work on the design doc, create component maps
 
 maggieZ -- 2018-10-16 20:17
-sipping virtual hot chocolate around a virtual campfire 
+sipping virtual hot chocolate around a virtual campfire
 
 qianZ -- 2018-10-16 20:17
 sipping virtual hot chocolate around a virtual campfire
 
 rubinP -- 2018-10-16 20:17
-sipping virtual hot chocolate around a virtual campfire 
+sipping virtual hot chocolate around a virtual campfire
 
 ~~ Our summary of events ~~
-- ugh i totally understand Dave I hate it when people steal sweaters off my desk 
+- ugh i totally understand Dave I hate it when people steal sweaters off my desk
 - plan things out carefully, making sure to layout the foundation first (action1). This way, you don’t end up with a bridge that is half suspension bridge and half supporting columns.
     - on that note, know which parts of the code are essential and which are for funnies
 - make sure program works on all systems (action2). there is no reason why it should be fine on a mac, but break on a linux computer; restarting a computer will not make things work magically!
-- enforce and use good coding practices (action3)- do not try to rush through the problem, or use bugs/hacks as acceptable code. communicate to your teammates where there are issues, questionable code, or if you're unsure about anything 
+- enforce and use good coding practices (action3)- do not try to rush through the problem, or use bugs/hacks as acceptable code. communicate to your teammates where there are issues, questionable code, or if you're unsure about anything
     - if you have a problem with the code and don’t try to resolve it, any code built off it it will turn into a pile of broken snowflakes soaked in cat urine with a Picasso covering it because no one wants to see the mess and no one will want to fix it
     - agree on a set of “standards” with your team before coding, and check up on code often to make sure it complies
 - haha 4chan. also gg to the kid in Russia and rip all of our internet privacy
@@ -56,11 +56,20 @@ created templates for login and whatnot
 qianZ -- 2018-10-17 20:50
 created flask app to check passwords
 
-rubinP -- 2018-10-17 12:54 
+rubinP -- 2018-10-17 12:54
 hard coded users to the logins.db
 
-rubinP -- 2018-10-18 12:45 
+rubinP -- 2018-10-18 12:45
 fixed a bug in the flask app to check passwords
 
 qianZ -- 2018-10-18 13:17
 worked in class on story update and viewing
+
+maggieZ -- 2018-10-18 13:17
+created more templates
+
+maggieZ -- 2018-10-19 13:19
+edited homepage so that it would display links to new stories/ stories that the user has contributed to/ new story && implemented sessions & redirecting pages
+
+maggieZ -- 2018-10-20 23:00
+linked createUser page to landing page. still need to make fxn that will edit the database

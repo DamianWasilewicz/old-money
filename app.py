@@ -2,7 +2,10 @@ from flask import Flask, render_template, request, session, redirect, url_for, f
 import sqlite3, os
 from passlib.hash import sha256_crypt
 
-DB_FILE="logins.db"
+#from util import all_stories, dbUpdate, stories, users
+
+
+DB_FILE="data/logins.db"
 #-----------------??? useful???-----------------
 db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
 c = db.cursor() #facilitate db ops
@@ -46,7 +49,7 @@ def check():
             flash("NAY PASSWORD")
             return redirect("/")
 
-    flash("no such username")
+    flash("username " + usrn + " not found. please try again")
     return redirect("/")
     ##return "no such username"
 
@@ -86,6 +89,10 @@ def logout():
 def addStory():
     return "wowie"
 
+@app.route('/register')
+def loadPage():
+    return render_template("createUser.html")
+#add fxn to add users to database
 
 if __name__ == "__main__":
     app.debug = True
