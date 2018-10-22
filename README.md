@@ -10,5 +10,5 @@
  - time, datetime
 
 ### How to install aforementioned modules
-Run the following command
+Run the following command 
 `pip install <submodule name>`
