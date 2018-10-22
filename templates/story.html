@@ -1,34 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title> {% block title %} old-money stories || {{ title }}  {% endblock %} </title>
-    <!--
+    <title> {% block title %} old-money stories | {% endblock %}  </title>
     {% block head %}
     {% endblock %}
-  -->
   </head>
 
   <body>
-    <!--{% block content %}-->
+    {% block content %}
 
-    <h3> You are now viewing: {{title}} </h3>
 
-    Last contribution:
-    {{content}}
-
-    Now make your own! 
-    <form action = "/#" method = "POST">
-
-    <textarea rows ="4" cols = "50" wrap = "hard" >
-    </textarea>
-    <input type = "submit" name = "submit">
-
-  </form>
-<!--
     {% endblock %}
 
     {% block footer %}
     {% endblock %}
-  -->
   </body>
 </html>

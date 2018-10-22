@@ -1,0 +1,17 @@
+{% extends "story.html" %}
+
+{%block title %} {{super()}} {% endblock %} {{title}} </title>
+
+{% block head%} {% endblock %}
+
+{% block content %}
+You've already contributed to this story! View {{ title}} here: <br>
+
+  {% for contribution in content %}
+    {{item}}
+    <br>
+  {% endfor %}
+
+{% endblock %}
+
+{% block footer %} {% endblock %}

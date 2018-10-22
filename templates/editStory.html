@@ -1,0 +1,28 @@
+{% extends "story.html" %}
+
+
+{% block title %} {{ super() }}{% endblock %} {{ title }}
+
+{% block head %}{% endblock %}
+
+{% block content %}
+
+<h3> You are now viewing: {{title}} </h3>
+
+Last contribution: <br>
+    {{ content }}
+
+    <br>
+
+    Now make your own!
+    <form action = "/#" method = "POST">
+
+    <textarea rows ="4" cols = "50" wrap = "hard" >
+    </textarea>
+    <input type = "submit" name = "submit">
+
+  </form>
+
+{% endblock %}
+
+{% block footer %} {% endblock %}

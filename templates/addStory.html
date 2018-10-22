@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title> {%block title %} old-money stories || New Story {% endblock %} </title>
+    <title> {% block title %} old-money stories || New Story {% endblock %} </title>
     <!--
     {% block head%}
     {% endblock %}
@@ -12,8 +12,15 @@
     new story yurrr
 
     <form action = "/" method = "POST">
+      Create a title:
+      <br>
+      <textarea rows = "1" cols = "50" name = "title">
+      </textarea>
+      <br>
 
-      <textarea rows ="4" cols = "50" wrap = "hard" >
+      Make a contribution:
+      <br>
+      <textarea rows ="4" cols = "50" wrap = "hard" name = "contribution" >
       </textarea>
       <input type = "submit" name = "submit">
 
