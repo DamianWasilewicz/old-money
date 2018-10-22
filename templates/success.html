@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> {%block title %} boo {% endblock %} </title>
+    {% block head%}
+    {% endblock %}
+  </head>
+
+  <body>
+  success! you've contributed to {{ title }} at {{ time }}.
+  <br>
+  return to <a href = "/auth" > home page </a> <br>
+  <a href = "/display" > view story </a>
+
+
+  </body>
+</html>
