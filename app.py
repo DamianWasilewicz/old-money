@@ -2,15 +2,11 @@ from flask import Flask, render_template, request, session, redirect, url_for, f
 import sqlite3, os
 from passlib.hash import sha256_crypt
 
-#from util import all_stories, dbUpdate, stories, users
+from util import all_stories, dbUpdate
 
 
-DB_FILE="data/logins.db"
-#-----------------??? useful???-----------------
-db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
-c = db.cursor() #facilitate db ops
 app = Flask(__name__)
-#----------------???---------------
+
 
 app.secret_key = os.urandom(32)
 
@@ -72,12 +68,13 @@ def editPage():
     db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
     c = db.cursor() #facilitate db ops
     nm = request.args.get("story")
+    session["storyname"]=nm
     # don't know how to select last addition
     cmd = """SELECT * FROM """+nm
     lastC =""
     contributions = c.execute(cmd).fetchall()
     lastC = contributions[len(contributions)-1][2]
-    return render_template("story.html", title = nm, content = lastC)
+    return render_template("editstory.html", title = nm, content = lastC)
 
 @app.route('/logout')
 def logout():
@@ -85,8 +82,11 @@ def logout():
     flash("You have been successfully logged out.")
     return redirect("/")
 
-@app.route('/addStory')
+@app.route('/addStory', methods = ["POST"])
 def addStory():
+    content = request.form["content"]
+    dbUpdate.addStories(session['username'], session['storyname'], content)
+    session.pop('storyname')
     return "wowie"
 
 @app.route('/register')
