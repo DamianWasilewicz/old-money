@@ -1,12 +1,11 @@
 from flask import Flask, render_template, request, session, redirect, url_for, flash
 import sqlite3, os
+import time, datetime
 from passlib.hash import sha256_crypt
 
 from util import all_stories, dbUpdate
 
-
 app = Flask(__name__)
-
 
 app.secret_key = os.urandom(32)
 
@@ -46,6 +45,9 @@ def check():
             return redirect("/")
 
     flash("username " + usrn + " not found. please try again")
+    db.commit()
+    db.close()
+
     return redirect("/")
     ##return "no such username"
 
@@ -60,7 +62,10 @@ def display():
     s = nm+"\n"
     for txt in contributions:
         s += txt[0]+" "
-    return s
+    db.commit()
+    db.close()
+
+    return render_template("story.html", title = nm, content = s)
 
 @app.route("/editPage")#edit stories
 def editPage():
@@ -74,7 +79,30 @@ def editPage():
     lastC =""
     contributions = c.execute(cmd).fetchall()
     lastC = contributions[len(contributions)-1][2]
-    return render_template("editstory.html", title = nm, content = lastC)
+    db.commit()
+    db.close()
+
+    return render_template("story.html", title = nm, content = lastC)
+
+@app.route('/success', methods=['POST'])
+def parse_submission():
+    content = request.args.get("contribution")
+    DB_FILE = "data/stories.db"
+    db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
+    c = db.cursor() #facilitate db ops
+
+    nm = request.args.get("story")
+    ts = time.time()
+    st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+
+    values = [[session['username'], (st), content]]
+    print(values)
+    cmd = 'INSERT INTO {} VALUES(?,?,?)'.format(nm)
+    c.executemany(cmd, values)
+    db.commit()
+    db.close()
+
+    return render_template('success.html', title = nm, time = st)
 
 @app.route('/logout')
 def logout():

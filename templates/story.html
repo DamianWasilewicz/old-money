@@ -10,6 +10,17 @@
     {% block content %}
 
 
+    Last contribution:
+    {{content}}
+
+    Now make your own! 
+	<form action = "/success" name = "contribution"  method = "POST">
+
+    <textarea rows ="4" cols = "50" wrap = "hard" ></textarea>
+    <input type = "submit" name = "submit">
+
+  </form>
+<!--
     {% endblock %}
 
     {% block footer %}
