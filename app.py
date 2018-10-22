@@ -73,7 +73,7 @@ def editPage():
     db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
     c = db.cursor() #facilitate db ops
     nm = request.args.get("story")
-    session["storyname"]=nm
+    session["storyname"] = nm
     # don't know how to select last addition
     cmd = """SELECT * FROM """+nm
     lastC =""
@@ -82,11 +82,12 @@ def editPage():
     db.commit()
     db.close()
 
-    return render_template("story.html", title = nm, content = lastC)
+    return render_template("editStory.html", title = nm, content = lastC)
 
-@app.route('/success', methods=['POST'])
+@app.route('/success', methods=['GET', 'POST'])
 def parse_submission():
-    content = request.args.get("contribution")
+    content = request.form.get("contribution")
+    print(content)
     DB_FILE = "data/stories.db"
     db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
     c = db.cursor() #facilitate db ops
