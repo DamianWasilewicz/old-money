@@ -3,7 +3,7 @@ import time, datetime
 import sqlite3
 
 def addStories(usern, storyName, contrib):
-    DB_FILE = "../data/stories.db"
+    DB_FILE = "./data/stories.db"
     db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
     c = db.cursor() #facilitate db ops
     cmd = "INSERT INTO {} VALUES(?,?,?)".format(storyName)
@@ -15,5 +15,5 @@ def addStories(usern, storyName, contrib):
     db.close()
     return
 
-addStories("qzhou", "Frankenstein","who made him?")
-addStories("rpeci", "Frankenstein", "This was a question that no one could answer")
+#addStories("qzhou", "Frankenstein","who made him?")
+#addStories("rpeci", "Frankenstein", "This was a question that no one could answer")
