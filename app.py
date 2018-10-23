@@ -3,7 +3,7 @@ import sqlite3, os
 import time, datetime
 from passlib.hash import sha256_crypt
 
-from util import all_stories, dbUpdate, users
+from util import dbUpdate, all_stories
 
 app = Flask(__name__)
 
@@ -53,6 +53,9 @@ def check():
 
 @app.route("/display")#displays one story selected in entirety
 def display():
+    if 'username' not in session:
+        flash("You have been logged out.")
+        return redirect("/")
     DB_FILE = "data/stories.db"
     db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
     c = db.cursor() #facilitate db ops
@@ -61,14 +64,17 @@ def display():
     contributions = c.execute(cmd).fetchall()
     s = nm+"\n"
     for txt in contributions:
-        s += txt[0]+" "
+        s += txt[0]+" \n"
     db.commit()
     db.close()
 
-    return render_template("story.html", title = nm, content = s)
+    return render_template("viewStory.html", title = nm, content = s)
 
 @app.route("/editPage")#edit stories
 def editPage():
+    if 'username' not in session:
+        flash("You have logged out.")
+        return redirect("/")
     DB_FILE = "data/stories.db"
     db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
     c = db.cursor() #facilitate db ops
@@ -81,9 +87,10 @@ def editPage():
     lastC = contributions[len(contributions)-1][2]
     db.commit()
     db.close()
-
+    session['storyname']=nm
     return render_template("editStory.html", title = nm, content = lastC)
 
+#I have written a similar fxn with name addStory below... misleading name--qz
 @app.route('/success', methods=['GET', 'POST'])
 def parse_submission():
     content = request.form.get("contribution")
@@ -107,16 +114,32 @@ def parse_submission():
 
 @app.route('/logout')
 def logout():
-    session.pop('username')
+    if 'username' in session:
+        session.pop('username')
     flash("You have been successfully logged out.")
     return redirect("/")
 
 @app.route('/addStory', methods = ["POST"])
-def addStory():
+def addStory():#editStory
+    if 'username' not in session:
+        flash("You have been logged out.")
+        return redirect("/")
     content = request.form["content"]
-    dbUpdate.addStories(session['username'], session['storyname'], content)
+    stnm = session['storyname']
+    test = (len(content)-1)*" "+"a"
+    #print (test)
+    if content < test:# makes sure content is not empty
+        
+        flash("<h1>Please add Content.</h1>")#this flash does not show
+        
+        session.pop('storyname')
+        return redirect("/editPage?story="+stnm)
+    usern = session['username']
+    
+    dbUpdate.addStories(usern, stnm, content)
     session.pop('storyname')
-    return "wowie"
+    return render_template('success.html', title = stnm, time = "now")
+
 
 @app.route('/register', methods = ['POST', 'GET'])
 def register():
@@ -161,7 +184,6 @@ def addUser():
     # passwords do not match
     flash ("Your passwords do not match. Please reenter your password")
     return redirect ("/register")
-
 
 if __name__ == "__main__":
     app.debug = True

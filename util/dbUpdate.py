@@ -3,7 +3,7 @@ import time, datetime
 import sqlite3
 
 def addStories(usern, storyName, contrib):
-    DB_FILE = "../data/stories.db"
+    DB_FILE = "./data/stories.db"#database file opens from app.py directory
     db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
     c = db.cursor() #facilitate db ops
     cmd = "INSERT INTO {} VALUES(?,?,?)".format(storyName)
