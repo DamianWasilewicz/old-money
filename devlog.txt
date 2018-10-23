@@ -76,3 +76,6 @@ linked createUser page to landing page. still need to make fxn that will edit th
 
 qianZ -- 2018-10-23 00:42
 update dbupdate mechanism and redirect, looked through some errors
+
+peciR -- 2018-10-23 13:10
+merge changes and fixes done by qianZ and clean up directory
