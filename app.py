@@ -3,7 +3,7 @@ import sqlite3, os
 import time, datetime
 from passlib.hash import sha256_crypt
 
-from util import all_stories, dbUpdate
+from util import all_stories, dbUpdate, users
 
 app = Flask(__name__)
 
@@ -118,10 +118,50 @@ def addStory():
     session.pop('storyname')
     return "wowie"
 
-@app.route('/register')
-def loadPage():
-    return render_template("createUser.html")
-#add fxn to add users to database
+@app.route('/register', methods = ['POST', 'GET'])
+def register():
+    # if the 'create user' button is pressed, the method is GET
+    # loads the page to create a user
+    if request.method == 'GET':
+        return render_template("createUser.html")
+
+    # if the 'submit' button is pressed, the method is POST
+    # sends the information
+    else:
+        return addUser()
+
+def addUser():
+    # takes user-inputted data
+    usrn = request.form["username"]
+    pass1 = request.form["password1"]
+    pass2 = request.form["password2"]
+
+    # should checks be added for empty user/passw
+    # users that are already in the system
+
+    # works even if password field is empty
+    # first checks if passwords are matching
+    if (pass1 == pass2):
+        # success stores the boolean from users.py
+        # is the user successfully added to the database? (the username is not already taken)
+        success = users.addUser(usrn, pass1)
+
+        # if successfully added
+        if success:
+            # success message
+            flash( "User " + usrn + " created. Please log in.")
+            # return to the landing site to log in again
+            return redirect("/")
+
+        # username was already taken.
+        else:
+            flash("Username " + usrn+ " is already taken. please try again")
+            return redirect("/register")
+
+    # passwords do not match
+    flash ("Your passwords do not match. Please reenter your password")
+    return redirect ("/register")
+
 
 if __name__ == "__main__":
     app.debug = True
