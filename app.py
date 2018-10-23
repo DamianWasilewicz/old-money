@@ -35,8 +35,6 @@ def check():
             print(entry[1])
             print(sha256_crypt.hash(passw))
             if sha256_crypt.verify(passw, entry[1]):
-
-
                 session['username'] = usrn
                 #print(session)
                 return '''SUCCESS!!\n<a href="/display?story=Frankenstein">view stories</a>\n<a href="/editPage?story=Frankenstein">edit stories</a>'''
@@ -90,28 +88,6 @@ def editPage():
     session['storyname']=nm
     return render_template("editStory.html", title = nm, content = lastC)
 
-#I have written a similar fxn with name addStory below... misleading name--qz
-@app.route('/success', methods=['GET', 'POST'])
-def parse_submission():
-    content = request.form.get("contribution")
-    print(content)
-    DB_FILE = "data/stories.db"
-    db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
-    c = db.cursor() #facilitate db ops
-
-    nm = request.args.get("story")
-    ts = time.time()
-    st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
-
-    values = [[session['username'], (st), content]]
-    print(values)
-    cmd = 'INSERT INTO {} VALUES(?,?,?)'.format(nm)
-    c.executemany(cmd, values)
-    db.commit()
-    db.close()
-
-    return render_template('success.html', title = nm, time = st)
-
 @app.route('/logout')
 def logout():
     if 'username' in session:
@@ -120,7 +96,7 @@ def logout():
     return redirect("/")
 
 @app.route('/addStory', methods = ["POST"])
-def addStory():#editStory
+def parse_submission():
     if 'username' not in session:
         flash("You have been logged out.")
         return redirect("/")
@@ -136,9 +112,12 @@ def addStory():#editStory
         return redirect("/editPage?story="+stnm)
     usern = session['username']
     
+    ts = time.time()
+    st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+
     dbUpdate.addStories(usern, stnm, content)
     session.pop('storyname')
-    return render_template('success.html', title = stnm, time = "now")
+    return render_template('success.html', title = stnm, time = st)
 
 
 @app.route('/register', methods = ['POST', 'GET'])
