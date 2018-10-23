@@ -3,7 +3,7 @@ import sqlite3, os
 import time, datetime
 from passlib.hash import sha256_crypt
 
-from util import dbUpdate, all_stories
+from util import dbUpdate, all_stories,users
 
 app = Flask(__name__)
 
