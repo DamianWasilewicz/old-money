@@ -1,6 +1,9 @@
-from flask import Flask, render_template, request, session, redirect, url_for, flash
 import sqlite3, os
+
 import time, datetime
+
+from flask import Flask, render_template, request, session, redirect, url_for, flash
+
 from passlib.hash import sha256_crypt
 
 from util import dbUpdate, all_stories,users, stories
@@ -63,8 +66,8 @@ def display():
     DB_FILE = "data/stories.db"
     db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
     c = db.cursor() #facilitate db ops
-    
-    
+
+
     cmd = """SELECT contribution FROM """ + nm
     contributions = c.execute(cmd).fetchall()
     s = nm+"\n"
@@ -114,9 +117,9 @@ def parse_submission():
     test = (len(content)-1)*" "+"a"
     #print (test)
     if content < test:# makes sure content is not empty
-        
+
         flash("<h1>Please add Content.</h1>")#this flash does not show
-        
+
         session.pop('storyname')
         return redirect("/editPage?story="+stnm)
     usern = session['username']
@@ -130,7 +133,6 @@ def parse_submission():
 def newStoryPage():
     """page to add a new story"""
     return render_template("addStory.html")
-
 @app.route('/processNewStory', methods = ['POST','GET'])
 def addNewStory():
     "actually add the new story"
@@ -138,7 +140,7 @@ def addNewStory():
     if 'username' not in session:
         flash("You have been logged out.")
         return redirect("/")
-    
+
     Title = request.form['title'] #uppercase to disambiguate from template
     contribution = request.form['contribution']
 
@@ -150,12 +152,12 @@ def addNewStory():
 
     stories.newStory(Title)
     dbUpdate.addStories(session['username'], Title, contribution)
-    
+
     ts = time.time()
     st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
     return render_template('success.html', title = Title, time = st)
-    
-@app.route("/viewyourStories", methods = ['GET','POST'])
+
+@app.route("/Stories", methods = ['GET','POST'])
 def yourStories():
     """display a list of your stories"""
     if 'username' not in session:
@@ -165,7 +167,7 @@ def yourStories():
                            otherInfo = "of you",
                            content = users.yourContributions(session['username']),
                            action = "/display")
-                                                             
+
 
 
 @app.route('/register', methods = ['POST', 'GET'])
@@ -211,6 +213,18 @@ def addUser():
     # passwords do not match
     flash ("Your passwords do not match. Please reenter your password")
     return redirect ("/register")
+
+# gets a list of all tables in a database
+@app.route("/viewAllStories")
+def listAll():
+    DB_FILE = "data/stories.db"
+    db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
+    c = db.cursor() #facilitate db ops
+    stories = c.execute('SELECT name FROM sqlite_master WHERE type = "table" ').fetchall()
+    db.commit()
+    db.close()
+    return render_template("allStories.html", content = stories)
+
 
 if __name__ == "__main__":
     app.debug = True

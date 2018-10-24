@@ -28,15 +28,6 @@ def addUser(username, password):
         createUser(username)
         return True
 
-
-#c.execute('CREATE TABLE info (username TEXT, password TEXT)')
-
-#password = sha256_crypt.hash('password')
-#info = [['rpeci', password] , ['mzhao3', password] , ['qzhou', password ]]
-#print(info)
-
-#c.executemany('INSERT INTO info VALUES (?, ?)', info)
-
 """User.db functionality"""
 def createUser(user):
     """makes a new table in user.db"""
