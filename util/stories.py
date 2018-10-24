@@ -34,6 +34,7 @@ db.close()
 """
 
 def newStory(storyName):
+    """adds a new story"""
     storyName = storyName.replace(" ", "_")
     STORIES = "./data/stories.db"
 
@@ -44,6 +45,7 @@ def newStory(storyName):
     return
 
 def hathContributed(username, storyname):
+    """returns true if username has contributed to it, else false"""
     STORIES = "./data/stories.db"
     db = sqlite3.connect(STORIES)
     c = db.cursor()
