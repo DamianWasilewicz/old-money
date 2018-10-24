@@ -97,3 +97,6 @@ work on users.db and related functionality, adding new stories, viewing your sto
 
 peciR -- 2018-10-24 12:35
 fix a bug regarding spaces in titles and test the currently implemented methods
+
+qianZ -- 2018-10-24 12:41
+has user contributed check
