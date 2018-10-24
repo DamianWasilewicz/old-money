@@ -25,6 +25,7 @@ def addUser(username, password):
         #print (info)
         db.commit()
         db.close()
+        createUser(username)
         return True
 
 
