@@ -20,6 +20,14 @@ Make a site that allows users to do this.
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+BUGS, WHY, AND HOW
+==========================
+- Initially, problems acessing the databases and the variables in POST/GET requests
+- Mostly due to working locally and then trying to transition to a flask app without
+  proper convening as a team
+- Code-wise, we were mixing up our files and our connections within the HTML
+
+
 
 --------------------------------------------------------------
 rubinP -- 2018-10-15 23:29
