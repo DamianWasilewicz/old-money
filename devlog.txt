@@ -86,6 +86,9 @@ edited homepage so that it would display links to new stories/ stories that the 
 maggieZ -- 2018-10-20 23:00
 linked createUser page to landing page. still need to make fxn that will edit the database
 
+maggieZ -- 2018-10-22 23:30
+finished createUser utility with logic checks for mismatching passwords/already existing username, and linked it to the logins database
+
 qianZ -- 2018-10-23 00:42
 update dbupdate mechanism and redirect, looked through some errors
 
@@ -100,3 +103,7 @@ fix a bug regarding spaces in titles and test the currently implemented methods
 
 qianZ -- 2018-10-24 12:41
 has user contributed check
+
+maggieZ -- 2018-10-24 14:28
+created allStories page, that reads from the database with all stories, and links to each story
+need to fix: all stories have the line you've already contributed to this story

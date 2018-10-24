@@ -1,5 +1,7 @@
-from passlib.hash import sha256_crypt
 import sqlite3
+
+from passlib.hash import sha256_crypt
+
 
 
 def addUser(username, password):
@@ -8,8 +10,7 @@ def addUser(username, password):
     c = db.cursor()
 
     # checks to see if there is a row with the given username
-    c.execute('SELECT * FROM info WHERE username = \"' + username + '\"')
-    check = c.fetchall()
+    check = c.execute('SELECT * FROM info WHERE username = \"' + username + '\"').fetchall()
     #print (check)
 
     # if the username is taken
@@ -43,7 +44,7 @@ def createUser(user):
 
 #createUser("trial")
 def addContent(user,story, timestamp):
-    """add content into user.db"""
+    'add content into user.db'
     USERS = "./data/users.db"
     db = sqlite3.connect(USERS)
     c = db.cursor()

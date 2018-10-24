@@ -1,37 +1,9 @@
-from passlib.hash import sha256_crypt
 import sqlite3
-import time
-import datetime
-"""
-STORIES = "stories.db"
 
-db = sqlite3.connect(STORIES)
-c = db.cursor()
+import time, datetime
 
-c.execute('CREATE TABLE Frankenstein (authors TEXT, timestamp TEXT, contribution TEXT)')
+from passlib.hash import sha256_crypt
 
-parent_list = []
-
-ts = time.time()
-st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
-print(st)
-parent_list.append(['rpeci', st, 'Once upon a time, there was a'])
-
-ts = time.time()
-st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
-print(st)
-parent_list.append(['mzhao3', st, 'big scary monster.'])
-
-ts = time.time()
-st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
-print(st)
-parent_list.append(['qzhou', st, 'He was very big and scary!'])
-
-c.executemany('INSERT INTO Frankenstein VALUES (?, ?, ?)', parent_list)
-
-db.commit()
-db.close()
-"""
 
 def newStory(storyName):
     """adds a new story"""
@@ -40,16 +12,26 @@ def newStory(storyName):
 
     db = sqlite3.connect(STORIES)
     c = db.cursor()
+    check = c.execute('SELECT name FROM sqlite_master WHERE type = "table" ').fetchall()
+
+    if check:
+        db.commit()
+        db.close()
+        return False
+
     cmd = 'CREATE TABLE {} (authors TEXT, timestamp TEXT, contribution TEXT)'.format(storyName)
     c.execute(cmd)
-    return
+
+    db.commit()
+    db.close()
+    return True
 
 def hathContributed(username, storyname):
     """returns true if username has contributed to it, else false"""
     STORIES = "./data/stories.db"
     db = sqlite3.connect(STORIES)
     c = db.cursor()
-    
+
     cmd = 'SELECT * FROM {} WHERE authors = "{}"'.format(storyname, username)
     result = c.execute(cmd).fetchall()
     if len(result) > 0:

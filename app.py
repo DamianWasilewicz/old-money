@@ -15,10 +15,7 @@ app.secret_key = os.urandom(32)
 @app.route("/")
 def root():
     if 'username' in session:
-        #return redirect("/auth")
         return render_template("home.html", username = session['username'])
-    #else:
-    #return redirect('/auth')
     return render_template("login.html")
 
 
@@ -41,9 +38,7 @@ def check():
 
 
                 session['username'] = usrn
-                #print(session)
                 return redirect("/")
-            #return "NAY PASSWORD"
             flash("NAY PASSWORD")
             return redirect("/")
 
@@ -52,10 +47,10 @@ def check():
     db.close()
 
     return redirect("/")
-    ##return "no such username"
 
-@app.route("/display")#displays one story selected in entirety
+@app.route("/display")
 def display():
+    'displays one story selected in entirety'
     if 'username' not in session:
         flash("You have been logged out.")
         return redirect("/")
@@ -112,6 +107,7 @@ def parse_submission():
     if 'username' not in session:
         flash("You have been logged out.")
         return redirect("/")
+
     content = request.form["content"]
     stnm = session['storyname']
     test = (len(content)-1)*" "+"a"
@@ -129,34 +125,43 @@ def parse_submission():
     session.pop('storyname')
     return render_template('success.html', title = stnm, time = st)
 
-@app.route('/newStory')
+@app.route('/newStory', methods = ['POST', 'GET'])
 def newStoryPage():
-    """page to add a new story"""
-    return render_template("addStory.html")
-@app.route('/processNewStory', methods = ['POST','GET'])
-def addNewStory():
-    "actually add the new story"
-
+    'returns page to add a new story'
     if 'username' not in session:
         flash("You have been logged out.")
         return redirect("/")
 
+    if (request.method == 'GET'):
+        return render_template("addStory.html")
+    else:
+        return addNewStory()
+
+def addNewStory():
+    'method to take user input for new story and add to database'
     Title = request.form['title'] #uppercase to disambiguate from template
     contribution = request.form['contribution']
 
-    titleTest = (len(Title)-1)*" "+"a"
-    contrTest = (len(contribution)-1)*" "+"a"
-    if Title  < titleTest or contribution < contrTest:# makes sure content is not empty
-        flash("<h1>Please do not imput empty string.</h1>")#this flash does not show
+    # checks if there is a title
+    if not Title:
+        flash("Please enter a title!")
+        return redirect("/newStory")
+    # checks if there is content
+    if not contribution:
+        flash("Put some words in that story!")
         return redirect("/newStory")
 
-    stories.newStory(Title)
-    dbUpdate.addStories(session['username'], Title, contribution)
+    # if there is a title and content
 
-    ts = time.time()
-    st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
-    return render_template('success.html', title = Title, time = st)
+    if stories.newStory(Title):
+        dbUpdate.addStories(session['username'], Title, contribution)
 
+        ts = time.time()
+        st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+        return render_template('success.html', title = Title, time = st)
+
+    flash("This story ("+ Title+ ") has already been created. Please create another story.")
+    return redirect("/newStory")
 @app.route("/Stories", methods = ['GET','POST'])
 def yourStories():
     """display a list of your stories"""
