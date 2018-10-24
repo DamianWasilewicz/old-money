@@ -26,7 +26,11 @@ BUGS, WHY, AND HOW
 - Mostly due to working locally and then trying to transition to a flask app without
   proper convening as a team
 - Code-wise, we were mixing up our files and our connections within the HTML
+- Fixed by changing up our structure and making things modular
 
+- had a bug with tables that had spaces in them
+- Fixed by replacing spaces with underscores
+- Still prints out table names with the underscores, will have to fix that eventually
 
 
 --------------------------------------------------------------
@@ -90,3 +94,6 @@ merge changes and fixes done by qianZ and clean up directory
 
 qianZ -- 2018-10-24 00:01
 work on users.db and related functionality, adding new stories, viewing your stories.
+
+peciR -- 2018-10-24 12:35
+fix a bug regarding spaces in titles and test the currently implemented methods

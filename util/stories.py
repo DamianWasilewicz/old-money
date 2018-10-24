@@ -34,6 +34,7 @@ db.close()
 """
 
 def newStory(storyName):
+    storyName = storyName.replace(" ", "_")
     STORIES = "./data/stories.db"
 
     db = sqlite3.connect(STORIES)

@@ -130,6 +130,7 @@ def parse_submission():
 def newStoryPage():
     """page to add a new story"""
     return render_template("addStory.html")
+
 @app.route('/processNewStory', methods = ['POST','GET'])
 def addNewStory():
     "actually add the new story"
