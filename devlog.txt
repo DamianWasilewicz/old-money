@@ -79,3 +79,6 @@ update dbupdate mechanism and redirect, looked through some errors
 
 peciR -- 2018-10-23 13:10
 merge changes and fixes done by qianZ and clean up directory
+
+qianZ -- 2018-10-24 00:01
+work on users.db and related functionality, adding new stories, viewing your stories.

@@ -2,7 +2,7 @@ from passlib.hash import sha256_crypt
 import sqlite3
 import time
 import datetime
-
+"""
 STORIES = "stories.db"
 
 db = sqlite3.connect(STORIES)
@@ -31,5 +31,13 @@ c.executemany('INSERT INTO Frankenstein VALUES (?, ?, ?)', parent_list)
 
 db.commit()
 db.close()
+"""
 
+def newStory(storyName):
+    STORIES = "./data/stories.db"
 
+    db = sqlite3.connect(STORIES)
+    c = db.cursor()
+    cmd = 'CREATE TABLE {} (authors TEXT, timestamp TEXT, contribution TEXT)'.format(storyName)
+    c.execute(cmd)
+    return

@@ -18,7 +18,7 @@ def addUser(username, password):
 
     else:
         # password is encrypted
-        password = sha256_crypt.hash('password')
+        password = sha256_crypt.hash(password)
         info = [[username, password]]
         c.executemany('INSERT INTO info VALUES (?, ?)', info)
 
@@ -35,3 +35,44 @@ def addUser(username, password):
 #print(info)
 
 #c.executemany('INSERT INTO info VALUES (?, ?)', info)
+
+"""User.db functionality"""
+def createUser(user):
+    """makes a new table in user.db"""
+    USERS = "./data/users.db"
+    db = sqlite3.connect(USERS)
+    c = db.cursor()
+
+    cmd = "CREATE TABLE {}(stories TEXT, timestamp TEXT)".format(user)
+    c.execute(cmd)
+    db.commit()
+    db.close()
+    return
+
+#createUser("trial")
+def addContent(user,story, timestamp):
+    """add content into user.db"""
+    USERS = "./data/users.db"
+    db = sqlite3.connect(USERS)
+    c = db.cursor()
+
+    cmd = "INSERT INTO {} VALUES(?,?)".format(user)
+    values = [[story,timestamp]]
+    c.executemany(cmd, values)
+    db.commit()
+    db.close()
+    return
+#addContent("trial", "Frankenstein", "troll")
+def yourContributions(user):
+    """get list of your contributions"""
+    USERS = "./data/users.db"
+    db = sqlite3.connect(USERS)
+    c = db.cursor()
+
+    cmd = "SELECT stories FROM "+user
+    listS= c.execute(cmd).fetchall()
+    listR=[]
+    for entry in listS:
+        listR.append(entry[0])
+    #print (listR)
+    return listR

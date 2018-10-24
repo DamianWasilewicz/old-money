@@ -3,15 +3,17 @@
 {%block title %} {{super()}} {% endblock %} {{title}} </title>
 
 {% block head%} {% endblock %}
-
+<!-- total stuff: otherInfo, action, content -->
 {% block content %}
-You've already contributed to this story! View {{ title}} here: <br>
+Here are the stories {{otherInfo}} : <br>
+<form action = {{action}}>
+{% for item in content %}
 
-{% for contribution in content %}
-    {{item}}
-    <br>
+  <input type = "radio" name = "story" value = {{item}}>{{item}}</input><br>
+
   {% endfor %}
-
+  <input type = "submit">
+</form>
 {% endblock %}
 
 {% block footer %} {% endblock %}

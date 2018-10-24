@@ -3,7 +3,7 @@ import sqlite3, os
 import time, datetime
 from passlib.hash import sha256_crypt
 
-from util import dbUpdate, all_stories,users
+from util import dbUpdate, all_stories,users, stories
 
 app = Flask(__name__)
 
@@ -39,7 +39,7 @@ def check():
 
                 session['username'] = usrn
                 #print(session)
-                return render_template("home.html", username = session['username'])
+                return redirect("/")
             #return "NAY PASSWORD"
             flash("NAY PASSWORD")
             return redirect("/")
@@ -56,15 +56,20 @@ def display():
     if 'username' not in session:
         flash("You have been logged out.")
         return redirect("/")
+    nm = request.args.get("story")
+    if nm == None:
+        flash("no valid input error")
+        return redirect("/")
     DB_FILE = "data/stories.db"
     db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
     c = db.cursor() #facilitate db ops
-    nm = request.args.get("story")
+    
+    
     cmd = """SELECT contribution FROM """ + nm
     contributions = c.execute(cmd).fetchall()
     s = nm+"\n"
     for txt in contributions:
-        s += txt[0]+" \n"
+        s += txt[0]+"\n"
     db.commit()
     db.close()
 
@@ -100,6 +105,7 @@ def logout():
 
 @app.route('/addStory', methods = ["POST"])
 def parse_submission():
+    """adds edition into story"""
     if 'username' not in session:
         flash("You have been logged out.")
         return redirect("/")
@@ -118,7 +124,47 @@ def parse_submission():
     st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
     dbUpdate.addStories(usern, stnm, content)
     session.pop('storyname')
-    return render_template('success.html', title = stnm, time = "now")
+    return render_template('success.html', title = stnm, time = st)
+
+@app.route('/newStory')
+def newStoryPage():
+    """page to add a new story"""
+    return render_template("addStory.html")
+@app.route('/processNewStory', methods = ['POST','GET'])
+def addNewStory():
+    "actually add the new story"
+
+    if 'username' not in session:
+        flash("You have been logged out.")
+        return redirect("/")
+    
+    Title = request.form['title'] #uppercase to disambiguate from template
+    contribution = request.form['contribution']
+
+    titleTest = (len(Title)-1)*" "+"a"
+    contrTest = (len(contribution)-1)*" "+"a"
+    if Title  < titleTest or contribution < contrTest:# makes sure content is not empty
+        flash("<h1>Please do not imput empty string.</h1>")#this flash does not show
+        return redirect("/newStory")
+
+    stories.newStory(Title)
+    dbUpdate.addStories(session['username'], Title, contribution)
+    
+    ts = time.time()
+    st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+    return render_template('success.html', title = Title, time = st)
+    
+@app.route("/viewyourStories", methods = ['GET','POST'])
+def yourStories():
+    """display a list of your stories"""
+    if 'username' not in session:
+        flash("You have been logged out.")
+        return redirect("/")
+    return render_template("viewStories.html",
+                           otherInfo = "of you",
+                           content = users.yourContributions(session['username']),
+                           action = "/display")
+                                                             
 
 
 @app.route('/register', methods = ['POST', 'GET'])
