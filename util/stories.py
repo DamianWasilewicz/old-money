@@ -41,3 +41,16 @@ def newStory(storyName):
     cmd = 'CREATE TABLE {} (authors TEXT, timestamp TEXT, contribution TEXT)'.format(storyName)
     c.execute(cmd)
     return
+
+def hathContributed(username, storyname):
+    STORIES = "./data/stories.db"
+    db = sqlite3.connect(STORIES)
+    c = db.cursor()
+    
+    cmd = 'SELECT * FROM {} WHERE authors = "{}"'.format(storyname, username)
+    result = c.execute(cmd).fetchall()
+    if len(result) > 0:
+        return True
+    return False
+#print(hathContributed('qzhou', 'Frankenstein'))
+#print(hathContributed('qzhou1', 'Frankenstein'))
