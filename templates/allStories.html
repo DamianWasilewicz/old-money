@@ -6,5 +6,9 @@
 
 {% block content %}
 View all stories:
-{{ content }}
+<br>
+{% for item in content %}
+<a href = "/display?story={{item[0]}}"> {{ item[0] }} </a>
+<br>
+{% endfor %}
 {% endblock %}
