@@ -61,8 +61,9 @@ def display():
     DB_FILE = "data/stories.db"
     db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
     c = db.cursor() #facilitate db ops
-
-
+    
+    if not stories.hathContributed(session['username'], nm):
+        return redirect("/editPage?story="+nm)
     cmd = """SELECT contribution FROM """ + nm
     contributions = c.execute(cmd).fetchall()
     s = nm+"\n"
