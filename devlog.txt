@@ -84,7 +84,7 @@ maggieZ -- 2018-10-19 13:19
 edited homepage so that it would display links to new stories/ stories that the user has contributed to/ new story && implemented sessions & redirecting pages
 
 qianZ -- 2018-10-19 13:18
-editPage 
+editPage
 
 maggieZ -- 2018-10-20 23:00
 linked createUser page to landing page. still need to make fxn that will edit the database
@@ -110,3 +110,9 @@ has user contributed check
 maggieZ -- 2018-10-24 14:28
 created allStories page, that reads from the database with all stories, and links to each story
 need to fix: all stories have the line you've already contributed to this story
+
+maggieZ -- 2018-10-24 15:14
+logic check for creating new stories- sees if story has already been created
+
+maggieZ -- 2018-10-24 23:45
+fixed viewYourStories page

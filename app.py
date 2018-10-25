@@ -54,6 +54,7 @@ def display():
     if 'username' not in session:
         flash("You have been logged out.")
         return redirect("/")
+
     nm = request.args.get("story")
     if nm == None:
         flash("no valid input error")
@@ -61,13 +62,18 @@ def display():
     DB_FILE = "data/stories.db"
     db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
     c = db.cursor() #facilitate db ops
-    
+
     if not stories.hathContributed(session['username'], nm):
+        db.commit()
+        db.close()
         return redirect("/editPage?story="+nm)
+
     cmd = """SELECT contribution FROM """ + nm
     contributions = c.execute(cmd).fetchall()
     s = nm+"\n"
+    # should probably display author / timestamp of last contributions
     for txt in contributions:
+        print(text)
         s += txt[0]+"\n"
     db.commit()
     db.close()
@@ -104,18 +110,18 @@ def logout():
 
 @app.route('/addStory', methods = ["POST"])
 def parse_submission():
-    """adds edition into story"""
+    'allows users to add an update to the story'
     if 'username' not in session:
         flash("You have been logged out.")
         return redirect("/")
 
     content = request.form["content"]
     stnm = session['storyname']
-    test = (len(content)-1)*" "+"a"
-    #print (test)
-    if content < test:# makes sure content is not empty
 
-        flash("<h1>Please add Content.</h1>")#this flash does not show
+    #print (test)
+    if not content:# makes sure content is not empty
+
+        flash("Please add Content.")#this flash does not show
 
         session.pop('storyname')
         return redirect("/editPage?story="+stnm)
@@ -163,16 +169,17 @@ def addNewStory():
 
     flash("This story ("+ Title+ ") has already been created. Please create another story.")
     return redirect("/newStory")
-@app.route("/viewyourStories", methods = ['GET','POST'])
+
+@app.route("/stories", methods = ['GET','POST'])
 def yourStories():
     """display a list of your stories"""
     if 'username' not in session:
         flash("You have been logged out.")
         return redirect("/")
-    return render_template("viewStories.html",
-                           otherInfo = "of you",
-                           content = users.yourContributions(session['username']),
-                           action = "/display")
+
+    return render_template("allStories.html",
+                            specifier = "you've contributed to",
+                            content = users.yourContributions(session['username']) )
 
 
 
@@ -229,7 +236,7 @@ def listAll():
     stories = c.execute('SELECT name FROM sqlite_master WHERE type = "table" ').fetchall()
     db.commit()
     db.close()
-    return render_template("allStories.html", content = stories)
+    return render_template("allStories.html", specifier = "in our collection", content = stories)
 
 
 if __name__ == "__main__":
