@@ -12,10 +12,10 @@ def newStory(storyName):
 
     db = sqlite3.connect(STORIES)
     c = db.cursor()
-    #check = c.execute('SELECT name FROM sqlite_master WHERE type = "table" ').fetchall()
+
     check = c.execute('SELECT name FROM sqlite_master WHERE name = "{}"'.format(storyName)).fetchall()
     print(check)
-    if len(check)!=0:
+    if check:
         db.commit()
         db.close()
         return False
@@ -35,7 +35,7 @@ def hathContributed(username, storyname):
 
     cmd = 'SELECT * FROM {} WHERE authors = "{}"'.format(storyname, username)
     result = c.execute(cmd).fetchall()
-    if len(result) > 0:
+    if result:
         return True
     return False
 #print(hathContributed('qzhou', 'Frankenstein'))

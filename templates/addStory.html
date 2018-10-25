@@ -18,11 +18,11 @@
     <form action = "/newStory" method = "POST">
       Create a title:
       <br>
-      <input type="text" name = "title"><br>
+      <input type="text" name = "title" pattern = "[a-zA-Z0-9_]+"><br>
 
       Make a contribution:
       <br>
-      <textarea rows ="4" cols = "50" wrap = "hard" name = "contribution" ></textarea>
+      <textarea rows ="4" cols = "50" wrap = "hard" name = "contribution" pattern = "[a-zA-Z0-9-_.,?!]+" ></textarea>
       <input type = "submit" name = "submit">
 
     </form>

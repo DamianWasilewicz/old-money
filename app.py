@@ -70,11 +70,10 @@ def display():
 
     cmd = """SELECT contribution FROM """ + nm
     contributions = c.execute(cmd).fetchall()
-    s = nm+"\n"
+    s = ""
     # should probably display author / timestamp of last contributions
     for txt in contributions:
-        print(text)
-        s += txt[0]+"\n"
+        s += txt[0] + " "
     db.commit()
     db.close()
 
@@ -170,7 +169,7 @@ def addNewStory():
     flash("This story ("+ Title+ ") has already been created. Please create another story.")
     return redirect("/newStory")
 
-@app.route("/stories", methods = ['GET','POST'])
+@app.route("/viewYourStories", methods = ['GET','POST'])
 def yourStories():
     """display a list of your stories"""
     if 'username' not in session:

@@ -64,8 +64,5 @@ def yourContributions(user):
 
     cmd = "SELECT stories FROM "+user
     listS= c.execute(cmd).fetchall()
-    listR=[]
-    for entry in listS:
-        listR.append(entry[0])
-    #print (listR)
-    return listR
+
+    return listS
