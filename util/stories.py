@@ -12,9 +12,10 @@ def newStory(storyName):
 
     db = sqlite3.connect(STORIES)
     c = db.cursor()
-    check = c.execute('SELECT name FROM sqlite_master WHERE type = "table" ').fetchall()
+    cmd = 'SELECT name FROM sqlite_master WHERE name = '+storyName
+    check = c.execute(cmd).fetchall()
 
-    if check:
+    if len(check)!=0:
         db.commit()
         db.close()
         return False

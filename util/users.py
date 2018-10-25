@@ -11,10 +11,10 @@ def addUser(username, password):
 
     # checks to see if there is a row with the given username
     check = c.execute('SELECT * FROM info WHERE username = \"' + username + '\"').fetchall()
-    #print (check)
+    print (check)
 
     # if the username is taken
-    if check:
+    if len(check)!=0:
         return False
 
     else:

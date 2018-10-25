@@ -162,7 +162,7 @@ def addNewStory():
 
     flash("This story ("+ Title+ ") has already been created. Please create another story.")
     return redirect("/newStory")
-@app.route("/Stories", methods = ['GET','POST'])
+@app.route("/viewyourStories", methods = ['GET','POST'])
 def yourStories():
     """display a list of your stories"""
     if 'username' not in session:
