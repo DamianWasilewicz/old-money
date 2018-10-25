@@ -83,6 +83,9 @@ created more templates
 maggieZ -- 2018-10-19 13:19
 edited homepage so that it would display links to new stories/ stories that the user has contributed to/ new story && implemented sessions & redirecting pages
 
+qianZ -- 2018-10-19 13:18
+editPage 
+
 maggieZ -- 2018-10-20 23:00
 linked createUser page to landing page. still need to make fxn that will edit the database
 
