@@ -116,3 +116,6 @@ logic check for creating new stories- sees if story has already been created
 
 maggieZ -- 2018-10-24 23:45
 fixed viewYourStories page
+
+maggieZ -- 2018-10-25 00:02
+removing redundant text / hardcoded links
