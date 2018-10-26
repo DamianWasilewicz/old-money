@@ -6,6 +6,12 @@
   </head>
 
   <body>
+
+    <!-- View error messages for bad user creation:
+      - mismatching passwords
+      - username already taken
+    -->
+
     {% set msgs = get_flashed_messages() %}
     {% for each in msgs %}
       {{ each }}
@@ -13,17 +19,25 @@
 
     {% endfor %}
 
-
+    <br>
     create your user
     <br>
     <form action = "/register" method = "POST">
 
+      <!-- username field -->
       <b> Username: </b> <input type = "text" name = "username" pattern = "[a-zA-Z0-9_]+" > <br>
-      <b> Password: </b> <input type = "password" name = "password1" > <br>
-      <b> Repeat Password: </b> <input type = "password" name = "password2"> <br>
+
+      <!-- password field -->
+      <b> Password: </b>
+        <input type = "password" name = "password1" required> <br>
+      <b> Repeat Password: </b>
+        <input type = "password" name = "password2"required> <br>
+      <!-- submit button -->
       <input type = "submit" name = "Log In" >
     </form>
 
+    <form action = "/" method = "POST">
+      <a class="button" href="/"> Go home! </a>
 
   </body>
 </html>

@@ -2,10 +2,6 @@
 <html>
   <head>
     <title> old-money stories || Home </title>
-    <!--
-    {% block head %}
-    {% endblock %}
-  -->
   </head>
 
   <body>
@@ -17,25 +13,22 @@
     <a class="button" href="/logout">LOGOUT</a>
 
     <br>
-    <!-- -->
 
+    <!-- Link to create a new story -->
     <form action = "/newStory" method = "POST">
     <a class="button" href="/newStory"> Add a Story!</a>
 
     <br>
-<br>
+
+    <!-- Link to view stories that user has contributed to -->
     <form action = "/yourStories" method = "POST">
       <a class="button" href="/viewYourStories"> View your stories! </a>
 
+    <br>
+
+    <!-- Link to view all stories on website -->
     <form action = "/listAll" method = "POST">
       <a class="button" href="/viewAllStories"> View all stories! </a>
 
-
-<!--
-    {% endblock %}
-
-    {% block footer %}
-    {% endblock %}
-  -->
   </body>
 </html>

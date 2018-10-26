@@ -5,17 +5,27 @@
   </head>
 
   <body>
+    <br>
+    <!-- View error messages from incomplete title/content blocks -->
     {% set msgs = get_flashed_messages() %}
     {% for each in msgs %}
+
       {{ each }}
       <br>
 
     {% endfor %}
+
+    <br>
+
+    <!-- Form for new story -->
     <form action = "/newStory" method = "POST">
+
+      <!-- Text box for title -->
       Create a title:
       <br>
       <input type="text" name = "title" pattern = "[a-zA-Z0-9_]+"><br>
 
+      <!-- Text box for content -->
       Make a contribution:
       <br>
       <textarea rows ="4" cols = "50" wrap = "hard" name = "contribution" pattern = "[a-zA-Z0-9-_.,?!]+" ></textarea>

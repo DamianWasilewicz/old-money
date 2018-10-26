@@ -14,7 +14,7 @@ def addUser(username, password):
     print (check)
 
     # if the username is taken
-    if len(check)!=0:
+    if check:
         return False
 
     else:
