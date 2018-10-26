@@ -20,7 +20,7 @@ def newStory(storyName):
         db.close()
         return False
 
-    cmd = 'CREATE TABLE {} (authors TEXT, timestamp TEXT, contribution TEXT)'.format(storyName)
+    cmd = 'CREATE TABLE [{}] (authors TEXT, timestamp TEXT, contribution TEXT)'.format(storyName)
     c.execute(cmd)
 
     db.commit()
@@ -33,7 +33,7 @@ def hathContributed(username, storyname):
     db = sqlite3.connect(STORIES)
     c = db.cursor()
 
-    cmd = 'SELECT * FROM {} WHERE authors = "{}"'.format(storyname, username)
+    cmd = 'SELECT * FROM [{}] WHERE authors = "{}"'.format(storyname, username)
     result = c.execute(cmd).fetchall()
     if result:
         return True

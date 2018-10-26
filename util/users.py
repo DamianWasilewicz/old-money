@@ -5,6 +5,8 @@ from passlib.hash import sha256_crypt
 
 
 def addUser(username, password):
+    """creates user with given username and password"""
+    
     LOGIN = "./data/logins.db"
     db = sqlite3.connect(LOGIN)
     c = db.cursor()
@@ -36,7 +38,7 @@ def createUser(user):
     db = sqlite3.connect(USERS)
     c = db.cursor()
 
-    cmd = "CREATE TABLE {}(stories TEXT, timestamp TEXT)".format(user)
+    cmd = "CREATE TABLE [{}](stories TEXT, timestamp TEXT)".format(user)
     c.execute(cmd)
     db.commit()
     db.close()
@@ -49,7 +51,7 @@ def addContent(user,story, timestamp):
     db = sqlite3.connect(USERS)
     c = db.cursor()
 
-    cmd = "INSERT INTO {} VALUES(?,?)".format(user)
+    cmd = "INSERT INTO [{}] VALUES(?,?)".format(user)
     values = [[story,timestamp]]
     c.executemany(cmd, values)
     db.commit()
@@ -62,7 +64,7 @@ def yourContributions(user):
     db = sqlite3.connect(USERS)
     c = db.cursor()
 
-    cmd = "SELECT stories FROM "+user
+    cmd = "SELECT stories FROM ["+user+"]"
     listS= c.execute(cmd).fetchall()
 
     return listS

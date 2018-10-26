@@ -68,7 +68,7 @@ def display():
         db.close()
         return redirect("/editPage?story="+nm)
 
-    cmd = """SELECT contribution FROM """ + nm
+    cmd = """SELECT contribution FROM [""" + nm+"]"
     contributions = c.execute(cmd).fetchall()
     s = ""
     # should probably display author / timestamp of last contributions
@@ -79,8 +79,9 @@ def display():
 
     return render_template("viewStory.html", title = nm, content = s)
 
-@app.route("/editPage")#edit stories
+@app.route("/editPage")
 def editPage():
+    """returns page to edit stories"""
     if 'username' not in session:
         flash("You have logged out.")
         return redirect("/")
@@ -90,7 +91,7 @@ def editPage():
     nm = request.args.get("story")
     session["storyname"] = nm
     # don't know how to select last addition
-    cmd = """SELECT * FROM """+nm
+    cmd = """SELECT * FROM ["""+nm+"]"
     lastC =""
     contributions = c.execute(cmd).fetchall()
     lastC = contributions[len(contributions)-1][2]
