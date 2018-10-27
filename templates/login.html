@@ -1,42 +1,31 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title> {% block title %} old-money stories || Login {% endblock %} </title>
-    <!--
-    {% block head %}
-    {% endblock %}
-  -->
+    <title> old-money stories | Login  </title>
   </head>
 
   <body>
+    <!-- View error messages from incomplete username/password -->
     {% set msgs = get_flashed_messages() %}
     {% for each in msgs %}
       {{ each }}
       <br>
-
     {% endfor %}
-    <!--{% block content %}-->
-    Welcome to old-money stories!
-    <br>
 
+    <!-------------------------------------------------------------->
+    Welcome to old-money stories!<br>
+
+    <!-- Input fields for username and password -->
     log in
     <form action = "/auth" method = "POST">
-
       <b> Username: </b> <input type = "text" name = "username" > <br>
       <b> Password: </b> <input type = "password" name = "password" > <br>
       <input type = "submit" name = "Log In" >
     </form>
 
+    <!-- Link to create new user -->
     <form action = "/register" method = "POST">
       <a class="button" href="/register">create user</a>
 
-
-
-<!--
-    {% endblock %}
-
-    {% block footer %}
-    {% endblock %}
-  -->
   </body>
 </html>

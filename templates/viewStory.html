@@ -1,19 +1,31 @@
 {% extends "story.html" %}
 
-{%block title %} {{super()}} {% endblock %} {{title}} </title>
-
-{% block head%} {% endblock %}
+{% block title %} {{super()}} {% endblock %} {{title}} </title>
 
 {% block content %}
-You've already contributed to this story! <br>
-You are viewing {{ title}}: <br>
-{{content}}
-<!--  {% for contribution in content %}
-    {{item}}
-    <br>
-  {% endfor %}-->
-    <form action = "/" method = "POST">
-      <a class="button" href="/"> Go home! </a>
-{% endblock %}
 
-{% block footer %} {% endblock %}
+  <!-- View error messages from incomplete title/content blocks -->
+  {% set msgs = get_flashed_messages() %}
+  {% for each in msgs %}
+    {{ each }}
+    <br>
+  {% endfor %}
+
+  <!-------------------------------------------------------------->
+  You've already contributed to this story! <br>
+  You are viewing {{title}}: <br> <br>
+
+  <!--
+    Loops through all contributions to the story and displays the author and timestamp.
+  -->
+  {% for contribution in content %}
+    {{contribution[2]}}
+    <br>
+    - by {{contribution[0]}} at {{contribution[1]}} <br>
+  {% endfor %}
+
+  <!-- Link to go to the homepage -->
+  <form action = "/" method = "POST">
+  <a class="button" href="/"> Go home! </a>
+
+{% endblock %}

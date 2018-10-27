@@ -1,27 +1,32 @@
 {% extends "story.html" %}
 
-
-{% block title %} {{ super() }}{% endblock %} {{ title }}
-
-{% block head %}{% endblock %}
+{% block title %} {{super()}} {% endblock %} {{title}}
 
 {% block content %}
 
-<h3> You are now viewing: {{title}} </h3>
-
-Last contribution: <br>
-    {{ content }}
-
+  <h3> You are now viewing: {{title}} </h3>
+  <!-- View error messages from incomplete content field -->
+  {% set msgs = get_flashed_messages() %}
+  {% for each in msgs %}
+    {{ each }}
     <br>
+  {% endfor %}
 
-	<form action = "/addStory"  method = "POST">
+  <!-------------------------------------------------------------->
+  Last contribution: <br>
+    {{contribution}}
+    <br>
+    -- by {{user}} at {{timestamp}} <br>
+  Now add on to the story! <br>
+	  <form action="/addStory"  method="POST">
+      <textarea rows="4" cols="50" wrap="hard" name="content"></textarea>
+      <input type="submit" name="submit">
+    </form>
 
-    <textarea rows ="4" cols = "50" wrap = "hard" name="content" pattern = "[a-zA-Z0-9-_.,?!]+">
-    </textarea>
-    <input type = "submit" name = "submit">
+  <br> Changed your mind? <br>
+  <!-- Link to go to the homepage -->
+  <form action = "/" method = "POST">
+  <a class="button" href="/"> Go home! </a>
 
-  </form>
 
 {% endblock %}
-
-{% block footer %} {% endblock %}

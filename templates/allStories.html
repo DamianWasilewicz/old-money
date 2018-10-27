@@ -5,10 +5,17 @@
 {% endblock %}
 
 {% block content %}
-View all stories:
-<br>
-{% for item in content %}
-<a href = "/display?story={{item[0]}}"> {{item[0]}} </a>
-<br>
-{% endfor %}
+  View all stories:
+  <br>
+  <!-- Loops through a list of all stories and provides a link for each -->
+  {% for item in content %}
+    <a href = "/display?story={{item[0]}}"> {{item[0]}} </a>
+    <br>
+  {% endfor %}
+  <br>
+
+  <!-- Link to go to the homepage -->
+  <form action = "/" method = "POST">
+  <a class="button" href="/"> Go home! </a>
+
 {% endblock %}

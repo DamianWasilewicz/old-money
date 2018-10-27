@@ -118,4 +118,11 @@ maggieZ -- 2018-10-24 23:45
 fixed viewYourStories page
 
 maggieZ -- 2018-10-25 00:02
-removing redundant text / hardcoded links
+removed redundant text / hardcoded links
+
+maggieZ -- 2018-10-26 10:58
+cleaned html
+
+maggieZ -- 2018-10-27 18:30
+moved all code so that the fxns that deal with databases are in the respective util files, fixed code so that numbers and special characters would not break the code/go to bad links/give bad token errors in sqlite3, added lots and lots of comments to code and html!!, made sure all comments/code conformed to PEP style guidelines
+need to do:: product testing & get rid of all unneeded users and stories.
