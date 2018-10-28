@@ -129,6 +129,8 @@ def parse_submission():
     st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
     # Adds update to the stories database.
     stories.addStories(usern, stnm, content)
+    # Adds update to the users database.
+    users.addContent(usern, stnm, st)
     session.pop('storyname')
     # Loads the success page since story was successfully contributed to.
     return render_template('success.html', title = stnm, time = st)
