@@ -7,7 +7,15 @@
  - flask
  - wheel
  - [passlib](https://passlib.readthedocs.io/en/stable/)
+    
+    The `passlib` library executes a hashing algorithm which allows us to store passwords with better safety.
+    
  - [time](https://docs.python.org/3.7/library/time.html), [datetime](https://docs.python.org/3.7/library/datetime.html)
+   
+   The `time` and `datetime` modules provides various methods for the execution and manipulation of information related to time and date. 
+   
+   We use these modules to generate the Timestamp of user edits to a story.
+   
 
 ### How to install aforementioned modules
 Run the following command
