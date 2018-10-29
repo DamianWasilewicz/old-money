@@ -6,8 +6,8 @@
  - sqlite3
  - flask
  - wheel
- - passlib
- - time, datetime
+ - [passlib](https://passlib.readthedocs.io/en/stable/)
+ - [time](https://docs.python.org/3.7/library/time.html), [datetime](https://docs.python.org/3.7/library/datetime.html)
 
 ### How to install aforementioned modules
 Run the following command
