@@ -120,6 +120,9 @@ fixed viewYourStories page
 maggieZ -- 2018-10-25 00:02
 removed redundant text / hardcoded links
 
+qianZ -- 2018-10-26 11:01
+tried to make table names accept special characters
+
 maggieZ -- 2018-10-26 10:58
 cleaned html
 
